@@ -12,13 +12,9 @@ class Curso extends Model
     protected $guarded = [];
 
 
-    // anvegar con el link slug
-    // public function getRouteKeyName()
-    // {
-    //     // return $this->getKeyName();  
-    //     return 'slug';
-
-    // }
-
-
+    // nvaegar con el link slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

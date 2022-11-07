@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCurso;
+use Illuminate\Support\Str;
+
 
 class CursoController extends Controller
 {
@@ -35,15 +37,10 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCurso $request, Curso $curso)
-    {
-    
-        // $curso = new Curso();
-        // $curso->name = $request->name;
-        // $curso->descripcion = $request->descripcion;
-        // $curso->categoria = $request->categoria;
-        // $curso->save();
-        $curso =Curso::create($request->all());//2 option bestone
+    public function store(StoreCurso $request)
+    {  
+        // le anado el campo el valor del campo slug que es para la navegacion
+        $curso =Curso::create(array_merge($request->all(), ['slug' => Str::slug($request->name,'-')]));
         return redirect()->route('cursos.show', $curso);
     }
 
